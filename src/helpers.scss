@@ -1,9 +1,28 @@
+@import './themes.scss';
+
 @function toRem($value) {
   $remValue: $value / 16 + rem;
   @return $remValue;
 }
 
-$primary: #ff5722; // Also located in TrendingRecipes.js
+$primary: theme(primary);
+
+$primary-background: theme(primary-background);
+$secondary-background: theme(secondary-background);
+$tertiary-background: theme(tertiary-background);
+
+$primary-text: theme(primary-text);
+$secondary-text: theme(secondary-text);
+$tertiary-text: theme(tertiary-text);
+
+$theme-toggle-background: theme(theme-toggle-background);
+$theme-toggle-border: theme(theme-toggle-border);
+
+$input-background: theme(input-background);
+$input-border-width: theme(input-border-width);
+$input-border-style: theme(input-border-style);
+$input-border-color: theme(input-border-color);
+
 $secondary: #00adb5;
 
 $alert-success-green: #d4edda;
@@ -33,7 +52,7 @@ $alert-success-green-border: #c3e6cb;
 $alert-success-green-text: #155724;
 
 // Navbar
-$nav-height: toRem(90);
+$nav-height: 5rem;
 
 $footer-height: toRem(150);
 $footer-margin: 4rem;
@@ -47,8 +66,10 @@ $home-hero-height: calc(500px - #{$page-top-padding});
 
 $border-radius: 3px;
 
-$max-width: 1400px;
+$max-width: 1000px;
 
 $font-family: 'Montserrat', sans-serif;
 
 $keyboard-height: toRem(185);
+
+$input-height: 45px;

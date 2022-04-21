@@ -1,0 +1,46 @@
+@import '../../themes.scss';
+@import '../../helpers.scss';
+
+nav.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  // background: theme(secondary-background);
+  height: $nav-height;
+  .nav-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 90%;
+    max-width: $max-width;
+    margin: 0 auto;
+    .nav-header {
+      .nav-icon {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+    }
+    .nav-content {
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        .nav-link {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          color: theme(secondary-text);
+
+          &:hover {
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+  }
+}

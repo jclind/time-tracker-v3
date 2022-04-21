@@ -1,0 +1,14 @@
+@import '../../helpers.scss';
+@import '../../themes.scss';
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 5px;
+
+  input {
+    // background-color: $primary;
+    margin-right: 2rem;
+  }
+}

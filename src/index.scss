@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap');
+@import './helpers.scss';
+@import './themes.scss';
+
+* {
+  font-family: $font-family;
+  letter-spacing: 0.05em;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  // background: red;
+  overflow: hidden;
+}
+html {
+  overflow: hidden;
+}
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+body {
+  position: relative;
+  width: 100%;
+}
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+  transition: all 0.3s;
+  color: $primary-text;
+  background: $primary-background;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: toRem(24);
+}
+h3 {
+  font-weight: 500;
+  font-size: toRem(24);
+}
+h4 {
+  font-weight: 500;
+  font-size: toRem(18);
+}
+p {
+  line-height: 1.75;
+}
+
+input {
+  &::placeholder {
+    // color: $tertiary-text;
+  }
+}
+
+.btn {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: $primary-text;
+}
+.action-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: $primary;
+  height: 45px;
+  border-radius: 5px;
+}
+
+.modal {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: fit-content;
+  max-width: 400px;
+  padding: 1rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: $border-radius;
+
+  .close-modal-btn {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    outline: none;
+    background: none;
+    width: fit-content;
+    .icon {
+      height: 22px;
+      width: 22px;
+    }
+  }
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 1.5rem;
+  height: $input-height;
+  background: $input-background;
+  padding-right: 3.5rem;
+  .name {
+    position: absolute;
+    top: -1.5rem;
+    font-size: 0.8rem;
+    padding-bottom: 0.25rem;
+    text-transform: capitalize;
+    height: 1ch;
+  }
+
+  .input-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0.5rem;
+    .icon {
+      height: 20px;
+      width: 20px;
+    }
+  }
+  input {
+    width: 100%;
+    outline: none;
+    height: $input-height;
+    // background: $primary;
+    color: $primary-text;
+    border: none;
+    border-width: $input-border-width;
+    border-style: $input-border-style;
+    border-color: $input-border-color;
+    background: none;
+
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+    border-radius: 0px !important;
+  }
+  .icons {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    right: 0.5rem;
+
+    .delete-icon,
+    .show-password-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .show-password-btn,
+    .icon {
+      width: 20px;
+    }
+  }
+
+  // .delete-icon {
+  //   position: absolute;
+  //   right: 0.25rem;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+  .icon {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 400px;
+  margin: 3rem auto 1rem auto;
+
+  display: flex;
+  flex-direction: column;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .action-btn {
+    margin-top: 3rem;
+  }
+  .switch-form {
+    font-size: 0.8rem;
+    color: $secondary-text;
+    font-weight: 400;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-internal-autofill-selected,
+input:-internal-autofill-previewed,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none !important;
+  color: $primary-text;
+  -webkit-text-fill-color: $primary-text !important;
+  -webkit-box-shadow: none;
+  transition: background-color 5000s ease-in-out 0s;
+  border-radius: 5px;
+}
+
+input:-webkit-autofill::first-line {
+  font-size: 16px;
+}
