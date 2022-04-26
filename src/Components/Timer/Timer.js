@@ -2,28 +2,15 @@ import React, { useState, useEffect } from 'react'
 import './Timer.scss'
 import formatTimer from '../../util/formatTimer'
 
-const Timer = () => {
-  const [time, setTime] = useState(0)
-  const [paused, setPaused] = useState(false)
-  // const [startTime, setStartTime] = useState(null)
-  let startTime = null
-
-  const startTimer = () => {
-    setPaused(false)
-  }
-  const stopTimer = () => {}
-  const clearTimer = () => {}
-
+const Timer = ({ time, setTime, paused }) => {
   useEffect(() => {
     let timerInterval
     if (!paused) {
+      let startTime = new Date().getTime()
       timerInterval = setInterval(() => {
-        if (!startTime) {
-          startTime = new Date().getTime()
-        }
         const currTime = new Date().getTime()
 
-        setTime(currTime - startTime)
+        setTime(time + currTime - startTime)
       }, 10)
     }
 

@@ -1,0 +1,98 @@
+@import '../../helpers.scss';
+
+.timer-text-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+  align-items: center;
+  width: 350px;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  input,
+  textarea {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: 1px solid $tertiary-text;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 0 0.5rem;
+    color: $primary-text;
+  }
+  label {
+    position: absolute;
+    width: auto;
+    height: auto;
+    background: none;
+    padding: 0;
+    margin: 0;
+    color: $tertiary-text;
+    pointer-events: none;
+
+    transition: all 0.1s linear;
+  }
+
+  label.filled {
+    font-size: 0.75rem;
+    color: $primary;
+  }
+
+  .title-container {
+    position: relative;
+    width: 100%;
+
+    label {
+      top: 0;
+      bottom: 0;
+      left: 0.5rem;
+    }
+    input {
+      height: 35px;
+      &:focus {
+        outline: 1px solid $primary;
+      }
+    }
+    &:focus-within {
+      label {
+        top: -3.5rem;
+        font-size: 0.75rem;
+        color: $primary !important;
+      }
+    }
+    label.filled {
+      top: -3.5rem;
+      bottom: 0;
+      color: $primary-text;
+    }
+  }
+  .description-container {
+    position: relative;
+    width: 100%;
+    label {
+      top: 0.5rem;
+      left: 0.5rem;
+    }
+    textarea {
+      padding: 0.5rem;
+      resize: vertical;
+      min-height: 1ch;
+      height: auto;
+      &:focus {
+        outline: 1px solid $primary;
+      }
+    }
+    &:focus-within {
+      label {
+        top: -1.25rem;
+        font-size: 0.75rem;
+        color: $primary !important;
+      }
+    }
+    label.filled {
+      top: -1.25rem;
+      color: $primary-text;
+    }
+  }
+}

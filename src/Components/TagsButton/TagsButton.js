@@ -21,6 +21,8 @@ const TagsButton = () => {
     if (selectedTag.id !== tagId) {
       setSelectedTag(options.find(option => option.id === tagId))
     }
+    setIsDropdown(false)
+    setTagSearchVal('')
   }
   const deleteTag = (e, tagId) => {
     e.stopPropagation()
@@ -64,7 +66,7 @@ const TagsButton = () => {
             <input
               className='search-input'
               placeholder='Find or create tag'
-              val={tagSearchVal}
+              value={tagSearchVal}
               onChange={e => setTagSearchVal(e.target.value)}
             />
           </div>

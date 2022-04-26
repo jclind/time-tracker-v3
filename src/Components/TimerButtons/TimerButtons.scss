@@ -1,0 +1,81 @@
+@import '../../helpers.scss';
+
+.timer-buttons {
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+
+  .toggle-timer-btn,
+  .clear-btn {
+    font-size: 1.65rem;
+    padding: 0.5rem 2rem;
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .toggle-timer-btn {
+    border: 1px solid $primary;
+    border-radius: 15px;
+    cursor: pointer;
+    color: $primary-text;
+    background: $primary;
+    // transition: background 0.4s linear, color 0.2s linear, all 0.4s linear;
+    transition: all 0.5s ease-in;
+  }
+  .toggle-timer-btn.start-no-time {
+    width: 300px;
+  }
+  .toggle-timer-btn.start-time {
+    width: 200px;
+  }
+  .toggle-timer-btn.stop {
+    background: none;
+    color: $primary;
+    width: 300px;
+  }
+
+  .clear-btn {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $error-red;
+    color: $error-red-text;
+    width: 0px;
+    padding: 0;
+    margin: 0;
+    // transition: width 0.2s linear, visibility 0s linear, opacity 0.5s linear;
+    transition: all 0.5s ease;
+  }
+  .clear-btn.paused {
+    visibility: visible;
+    opacity: 1;
+    padding: 0.5rem 2rem;
+    width: 150px;
+    margin: 0 1rem;
+  }
+
+  .submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    .icon {
+      height: 45px;
+      width: 45px;
+    }
+  }
+  .submit-btn.paused {
+    visibility: visible;
+    opacity: 1;
+    width: 45px;
+    // padding: 0.5rem 2rem;
+  }
+}
