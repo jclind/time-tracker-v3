@@ -2,12 +2,22 @@ import React, { useState } from 'react'
 import Modal from 'react-modal'
 import FormInput from '../../FormInput/FormInput'
 import { AiOutlineClose, AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
-import './SignupModal.scss'
+import { useAuth } from '../../../context/AuthContext'
+import { TailSpin } from 'react-loader-spinner'
+import { AiOutlineWarning } from 'react-icons/ai'
 Modal.setAppElement('#root')
 
-const SignupModal = ({ signupModalOpen, setSignupModalOpen }) => {
+const SignupModal = ({
+  signupModalOpen,
+  setSignupModalOpen,
+  setLoginModalOpen,
+}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const { handleSignup } = useAuth()
 
   const primaryBackground = (() => {
     if (document.querySelector('.app')) {
@@ -26,11 +36,30 @@ const SignupModal = ({ signupModalOpen, setSignupModalOpen }) => {
     setSignupModalOpen(false)
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
+    setLoading(true)
+
+    if (!email) {
+      return setError('Please enter email')
+    }
+    if (!password) {
+      return setError('Please enter password')
+    } else if (password.length < 6) {
+      return setError('Password must be 6 characters or greater')
+    }
+
+    const signupError = await handleSignup(email, password)
+
+    if (signupError) {
+      return setError('ERROR:', signupError.code)
+    }
+    setLoading(false)
+    closeModal()
   }
   const handleSwitchToLogin = () => {
     closeModal()
+    setLoginModalOpen(true)
   }
 
   return (
@@ -53,6 +82,12 @@ const SignupModal = ({ signupModalOpen, setSignupModalOpen }) => {
       <button className='close-modal-btn btn' onClick={closeModal}>
         <AiOutlineClose className='icon' />
       </button>
+      {error && (
+        <div className='form-error'>
+          <AiOutlineWarning className='icon' />
+          {error}
+        </div>
+      )}
       <form onSubmit={handleSubmit} className='signup-form form'>
         <div className='inputs'>
           <FormInput
@@ -73,8 +108,22 @@ const SignupModal = ({ signupModalOpen, setSignupModalOpen }) => {
             showPasswordBtn={true}
           />
         </div>
-        <button className='signup-btn action-btn btn' type='submit'>
-          Sign Up
+        <button
+          className='signup-btn action-btn btn'
+          type='submit'
+          disabled={loading}
+        >
+          {loading ? (
+            <TailSpin
+              height='30'
+              width='30'
+              color='white'
+              arialLabel='loading'
+              className='spinner'
+            />
+          ) : (
+            'Sign Up'
+          )}
         </button>
         <button
           className='switch-form btn'

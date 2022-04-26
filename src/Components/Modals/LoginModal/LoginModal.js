@@ -2,11 +2,21 @@ import React, { useState } from 'react'
 import Modal from 'react-modal'
 import FormInput from '../../FormInput/FormInput'
 import { AiOutlineClose, AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
+import { useAuth } from '../../../context/AuthContext'
+import { TailSpin } from 'react-loader-spinner'
+import { AiOutlineWarning } from 'react-icons/ai'
 Modal.setAppElement('#root')
 
-const LoginModal = ({ loginModalOpen, setLoginModalOpen }) => {
+const LoginModal = ({
+  loginModalOpen,
+  setLoginModalOpen,
+  setSignupModalOpen,
+}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const { handleLogin } = useAuth()
 
   const primaryBackground = (() => {
     if (document.querySelector('.app')) {
@@ -25,11 +35,30 @@ const LoginModal = ({ loginModalOpen, setLoginModalOpen }) => {
     setLoginModalOpen(false)
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
+    setLoading(true)
+
+    if (!email) {
+      setLoading(false)
+      return setError('Please enter email')
+    }
+    if (!password) {
+      setLoading(false)
+      return setError('Please enter password')
+    }
+
+    const loginError = await handleLogin(email, password)
+    if (loginError) {
+      setLoading(false)
+      return setError(`ERROR: ${loginError.code}`)
+    }
+    setLoading(false)
+    closeModal()
   }
   const handleSwitchToSignup = () => {
     closeModal()
+    setSignupModalOpen(true)
   }
 
   return (
@@ -52,6 +81,12 @@ const LoginModal = ({ loginModalOpen, setLoginModalOpen }) => {
       <button className='close-modal-btn btn' onClick={closeModal}>
         <AiOutlineClose className='icon' />
       </button>
+      {error && (
+        <div className='form-error'>
+          <AiOutlineWarning className='icon' />
+          {error}
+        </div>
+      )}
       <form onSubmit={handleSubmit} className='login-form form'>
         <div className='inputs'>
           <FormInput
@@ -72,15 +107,29 @@ const LoginModal = ({ loginModalOpen, setLoginModalOpen }) => {
             showPasswordBtn={true}
           />
         </div>
-        <button className='login-btn action-btn btn' type='submit'>
-          Login
+        <button
+          className='login-btn action-btn btn'
+          type='submit'
+          disabled={loading}
+        >
+          {loading ? (
+            <TailSpin
+              height='30'
+              width='30'
+              color='white'
+              arialLabel='loading'
+              className='spinner'
+            />
+          ) : (
+            'Login'
+          )}
         </button>
         <button
           className='switch-form btn'
           onClick={handleSwitchToSignup}
           type='button'
         >
-          Already have an account?
+          Don't have an account?
         </button>
       </form>
     </Modal>

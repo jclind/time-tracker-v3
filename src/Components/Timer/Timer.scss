@@ -1,0 +1,16 @@
+@import '../../helpers.scss';
+
+.timer-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  .time {
+    font-size: 4rem;
+    // width: 200px;
+    letter-spacing: 0.25rem;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}

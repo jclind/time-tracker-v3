@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { auth } from '../auth/firebase'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth'
 
 const AuthContext = React.createContext()
 export function useAuth() {
@@ -8,7 +13,29 @@ export function useAuth() {
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(null)
+
+  const handleSignup = async (email, password) => {
+    let error = null
+    createUserWithEmailAndPassword(auth, email, password).catch(err => {
+      error = err
+    })
+    return error
+  }
+  const handleLogin = async (email, password) => {
+    let error = null
+    await signInWithEmailAndPassword(auth, email, password).catch(err => {
+      error = err
+    })
+    return error
+  }
+  const handleLogout = async (email, password) => {
+    let error
+    await signOut(auth).catch(err => {
+      error = err
+    })
+    return error
+  }
 
   // Detect auth status change
   useEffect(() => {
@@ -27,7 +54,7 @@ const AuthProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const value = { user }
+  const value = { user, handleSignup, handleLogin, handleLogout }
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 

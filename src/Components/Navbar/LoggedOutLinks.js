@@ -5,6 +5,7 @@ import LoginModal from '../Modals/LoginModal/LoginModal'
 const LoggedOutLinks = () => {
   const [signupModalOpen, setSignupModalOpen] = useState(false)
   const [loginModalOpen, setLoginModalOpen] = useState(false)
+
   const handleLoginLinkClick = e => {
     setLoginModalOpen(true)
   }

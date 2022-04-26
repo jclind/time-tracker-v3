@@ -18,12 +18,15 @@ $tertiary-text: theme(tertiary-text);
 $theme-toggle-background: theme(theme-toggle-background);
 $theme-toggle-border: theme(theme-toggle-border);
 
+$tag-select-background: theme(tag-select-background);
+$tag-select-border: theme(tag-select-border);
+$tag-select-border-focused: theme(tag-select-border-focused);
+$tag-select-dropdown-inner-border: theme(tag-select-dropdown-inner-border);
+
 $input-background: theme(input-background);
 $input-border-width: theme(input-border-width);
 $input-border-style: theme(input-border-style);
 $input-border-color: theme(input-border-color);
-
-$secondary: #00adb5;
 
 $alert-success-green: #d4edda;
 $alert-success-green-border: #c3e6cb;
@@ -73,3 +76,10 @@ $font-family: 'Montserrat', sans-serif;
 $keyboard-height: toRem(185);
 
 $input-height: 45px;
+
+:export {
+  inputBackground: $input-background;
+  primaryText: $primary-text;
+  primaryBackground: $primary-background;
+  gray900: $gray-900;
+}

@@ -94,6 +94,11 @@ input {
   text-align: center;
   border-radius: $border-radius;
 
+  h2 {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
   .close-modal-btn {
     position: absolute;
     right: 1rem;
@@ -191,7 +196,7 @@ form {
   flex-direction: column;
   width: 90%;
   max-width: 400px;
-  margin: 3rem auto 1rem auto;
+  margin: 1rem auto 1rem auto;
 
   display: flex;
   flex-direction: column;
@@ -212,6 +217,28 @@ form {
     margin: 0 auto;
     margin-top: 2rem;
   }
+}
+.form-error,
+.form-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 5px;
+  font-size: toRem(14);
+  font-weight: 600;
+  padding: 0.5rem;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  .icon {
+    flex-shrink: 0;
+  }
+}
+.form-success {
+  background: $success-green;
+}
+.form-error {
+  background: $error-red;
 }
 
 input:-webkit-autofill,

@@ -31,7 +31,7 @@ const FormInput = ({
   }, [passwordShow])
 
   return (
-    <label className='form-input'>
+    <label className='form-input-label'>
       <div className='name'>{name}:</div>
       <div className='input-icon'>{icon}</div>
       <input
@@ -40,6 +40,8 @@ const FormInput = ({
         onChange={e => setVal(e.target.value)}
         placeholder={placeholder}
         style={{ padding: icon ? '0 0.5rem 0 2.75rem' : '0 0.5rem' }}
+        className='form-input'
+        data-testid='form-input'
       />
       <div className='icons'>
         {showPasswordBtn && (
@@ -55,7 +57,11 @@ const FormInput = ({
           </div>
         )}
         {val && (
-          <div onClick={() => setVal('')} className='delete-icon'>
+          <div
+            onClick={() => setVal('')}
+            className='delete-icon'
+            data-testid='clear-input'
+          >
             <AiOutlineCloseCircle className='icon' />
           </div>
         )}

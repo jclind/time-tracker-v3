@@ -1,0 +1,9 @@
+@import '../../helpers.scss';
+
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: $nav-height;
+  padding-top: 3rem;
+}
