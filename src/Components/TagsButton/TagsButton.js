@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
 import { BsFillTagFill } from 'react-icons/bs'
 import { AiOutlineCheck, AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
+import useClickOutside from '../../util/useClickOutside'
 import './TagsButton.scss'
 
 const TagsButton = () => {
@@ -16,6 +17,10 @@ const TagsButton = () => {
     { value: 'projects', label: 'projects', color: '#d9534f', id: 5 },
   ])
   const [selectedTag, setSelectedTag] = useState(options[0])
+
+  const tagsButtonContainer = useClickOutside(() => {
+    setIsDropdown(false)
+  })
 
   const selectTag = tagId => {
     if (selectedTag.id !== tagId) {
@@ -48,7 +53,7 @@ const TagsButton = () => {
   }
 
   return (
-    <div className='tags-button-container'>
+    <div className='tags-button-container' ref={tagsButtonContainer}>
       <div className='tags-select'>
         <button className='selector-container btn' onClick={toggleDropdown}>
           <div className='selector-text'>
